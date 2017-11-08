@@ -43,6 +43,7 @@
 - [descend](#descend) `Function`
 - [dissoc](#dissoc) `Object`
 - [dissocPath](#dissocpath) `Object`
+- [divide](#devide) `Math`
 
 **[⬆ вверх](#Документація)**
 
@@ -948,6 +949,38 @@ _Додано у версії v0.11.0_
 R.dissocPath(['a', 'b', 'c'], {a: {b: {c: 42}}}); //=> {a: {b: {}}}
 ```
 Спробуйте у [REPL](http://ramdajs.com/repl/?v=0.25.0#;R.dissocPath%28%5B%27a%27%2C%20%27b%27%2C%20%27c%27%5D%2C%20%7Ba%3A%20%7Bb%3A%20%7Bc%3A%2042%7D%7D%7D%29%3B%20%2F%2F%3D%3E%20%7Ba%3A%20%7Bb%3A%20%7B%7D%7D%7D)
+
+*[⬆ вверх](#Документація)**
+
+
+
+## divide
+### `[Math]`
+
+`Number → Number → Number`
+
+#### Параметри:
+| a | Перше значення. |
+:---|:---|
+| b | Друге значення. |
+| повертає __Number__ | Результат `a / b`. |
+
+_Додано у версії v0.1.0_
+
+Ділить два числа. Еквівалент для `a / b`.
+
+Дивіться також [multiply](https://github.com/ivanzusko/ramda/blob/master/DOCUMENTATION.md#multiply).
+
+```javascript
+R.divide(71, 100); //=> 0.71
+
+var half = R.divide(R.__, 2);
+half(42); //=> 21
+
+var reciprocal = R.divide(1);
+reciprocal(4);   //=> 0.25
+```
+Спробуйте у [REPL](http://ramdajs.com/repl/?v=0.25.0#?R.divide%2871%2C%20100%29%3B%20%2F%2F%3D%3E%200.71%0A%0Avar%20half%20%3D%20R.divide%28R.__%2C%202%29%3B%0Ahalf%2842%29%3B%20%2F%2F%3D%3E%2021%0A%0Avar%20reciprocal%20%3D%20R.divide%281%29%3B%0Areciprocal%284%29%3B%20%20%20%2F%2F%3D%3E%200.25)
 
 **[⬆ вверх](#Документація)**
 
