@@ -43,7 +43,7 @@
 - [descend](#descend) `Function`
 - [dissoc](#dissoc) `Object`
 - [dissocPath](#dissocpath) `Object`
-- [divide](#devide) `Math`
+- [divide](#divide) `Math`
 
 **[⬆ вверх](#Документація)**
 
