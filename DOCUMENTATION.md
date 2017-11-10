@@ -44,6 +44,7 @@
 - [dissoc](#dissoc) `Object`
 - [dissocPath](#dissocpath) `Object`
 - [divide](#divide) `Math`
+- [dropWhile](#dropwhile) `List`
 
 **[⬆ вверх](#Документація)**
 
@@ -981,6 +982,41 @@ var reciprocal = R.divide(1);
 reciprocal(4);   //=> 0.25
 ```
 Спробуйте у [REPL](http://ramdajs.com/repl/?v=0.25.0#?R.divide%2871%2C%20100%29%3B%20%2F%2F%3D%3E%200.71%0A%0Avar%20half%20%3D%20R.divide%28R.__%2C%202%29%3B%0Ahalf%2842%29%3B%20%2F%2F%3D%3E%2021%0A%0Avar%20reciprocal%20%3D%20R.divide%281%29%3B%0Areciprocal%284%29%3B%20%20%20%2F%2F%3D%3E%200.25)
+
+**[⬆ вверх](#Документація)**
+
+
+
+## dropWhile
+### `[List]`
+
+`(a → Boolean) → [a] → [a]`
+`(a → Boolean) → String → String`
+
+#### Параметри:
+| fn | Фунція, яка буде викликатися у кожній ітерації. |
+:---|:---|
+| xs | Колекція, яку треба ітерувати. |
+| повертає __Array__ | Новий масив. |
+
+_Додано у версії v0.9.0_
+
+Повертає новий список, виключаючи початкові елементи переданого списку, які вдовольняють умову переданого предикату. Ця функція передає кожне значення зі списку у наданий предикат, пропускаючи елементи, поки предикативна функція повертає `true`. Предика застосовується до одного елементу: _(value)_.
+
+Передає до `dropWhile` метод другого аргумента, якщо присутній.
+
+Поводить себе як трансдюсер, якщо на місці списку передано трансформер.
+
+Дивіться також [takeWhile](https://github.com/ivanzusko/ramda/blob/master/DOCUMENTATION.md#takewhile), [transduce](https://github.com/ivanzusko/ramda/blob/master/DOCUMENTATION.md#transduce), [addIndex](https://github.com/ivanzusko/ramda/blob/master/DOCUMENTATION.md#addindex).
+
+```javascript
+var lteTwo = x => x <= 2;
+
+R.dropWhile(lteTwo, [1, 2, 3, 4, 3, 2, 1]); //=> [3, 4, 3, 2, 1]
+
+R.dropWhile(x => x !== 'd' , 'Ramda'); //=> 'da'
+```
+Спробуйте у [REPL](http://ramdajs.com/repl/?v=0.25.0#;var%20lteTwo%20%3D%20x%20%3D%3E%20x%20%3C%3D%202%3B%0A%0AR.dropWhile%28lteTwo%2C%20%5B1%2C%202%2C%203%2C%204%2C%203%2C%202%2C%201%5D%29%3B%20%2F%2F%3D%3E%20%5B3%2C%204%2C%203%2C%202%2C%201%5D%0A%0AR.dropWhile%28x%20%3D%3E%20x%20%21%3D%3D%20%27d%27%20%2C%20%27Ramda%27%29%3B%20%2F%2F%3D%3E%20%27da%27)
 
 **[⬆ вверх](#Документація)**
 
