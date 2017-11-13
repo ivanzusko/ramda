@@ -44,6 +44,7 @@
 - [dissoc](#dissoc) `Object`
 - [dissocPath](#dissocpath) `Object`
 - [divide](#divide) `Math`
+- [drop](#drop) `List`
 - [dropWhile](#dropwhile) `List`
 
 **[⬆ вверх](#Документація)**
@@ -987,6 +988,40 @@ reciprocal(4);   //=> 0.25
 
 
 
+## drop
+### `[List]`
+
+`Number → [a] → [a]`
+`Number → String → String`
+
+#### Параметри:
+| n |
+:---|:---|
+| list |
+| повертає __*__ | Копію списку без перших `n` елементів. |
+
+_Додано у версії v0.1.0_
+
+Повертає все, окрім перших `n` елементів переданого списку, строки чи трансдюсера/трансформера (чи об'єкта з `drop` методом).
+
+Виконується з другим аргументом, якщо присутній.
+
+See also take, transduce, dropLast, dropWhile.
+Дивіться також [take](https://github.com/ivanzusko/ramda/blob/master/DOCUMENTATION.md#take), [transduce](https://github.com/ivanzusko/ramda/blob/master/DOCUMENTATION.md#transduce), [dropLast](https://github.com/ivanzusko/ramda/blob/master/DOCUMENTATION.md#droplast), [dropWhile](https://github.com/ivanzusko/ramda/blob/master/DOCUMENTATION.md#dropwhile)
+
+```javascript
+R.drop(1, ['foo', 'bar', 'baz']); //=> ['bar', 'baz']
+R.drop(2, ['foo', 'bar', 'baz']); //=> ['baz']
+R.drop(3, ['foo', 'bar', 'baz']); //=> []
+R.drop(4, ['foo', 'bar', 'baz']); //=> []
+R.drop(3, 'ramda');               //=> 'da'
+```
+Спробуйте у [REPL](http://ramdajs.com/repl/?v=0.25.0#?R.drop%281%2C%20%5B%27foo%27%2C%20%27bar%27%2C%20%27baz%27%5D%29%3B%20%2F%2F%3D%3E%20%5B%27bar%27%2C%20%27baz%27%5D%0AR.drop%282%2C%20%5B%27foo%27%2C%20%27bar%27%2C%20%27baz%27%5D%29%3B%20%2F%2F%3D%3E%20%5B%27baz%27%5D%0AR.drop%283%2C%20%5B%27foo%27%2C%20%27bar%27%2C%20%27baz%27%5D%29%3B%20%2F%2F%3D%3E%20%5B%5D%0AR.drop%284%2C%20%5B%27foo%27%2C%20%27bar%27%2C%20%27baz%27%5D%29%3B%20%2F%2F%3D%3E%20%5B%5D%0AR.drop%283%2C%20%27ramda%27%29%3B%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%2F%2F%3D%3E%20%27da%27)
+
+**[⬆ вверх](#Документація)**
+
+
+
 ## dropWhile
 ### `[List]`
 
@@ -1040,7 +1075,7 @@ _Додано у версії v0.1.0_
 R.identity(1); //=> 1
 
 var obj = {};
-R.identity(obj) === obj; //=> true
+R.identity(obj) obj; //=> true
 ```
 Спробуйте у [REPL](http://ramdajs.com/repl/?v=0.24.1#?R.identity%281%29%3B%20%2F%2F%3D%3E%201%0A%0Avar%20obj%20%3D%20%7B%7D%3B%0AR.identity%28obj%29%20%3D%3D%3D%20obj%3B%20%2F%2F%3D%3E%20true)
 
