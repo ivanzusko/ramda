@@ -45,6 +45,7 @@
 - [dissocPath](#dissocpath) `Object`
 - [divide](#divide) `Math`
 - [drop](#drop) `List`
+- [dropLast](#droplast) `List`
 - [dropWhile](#dropwhile) `List`
 
 **[⬆ вверх](#Документація)**
@@ -989,12 +990,14 @@ reciprocal(4);   //=> 0.25
 
 
 ## drop
+
 ### `[List]`
 
 `Number → [a] → [a]`
 `Number → String → String`
 
 #### Параметри:
+
 | n |
 :---|:---|
 | list |
@@ -1017,6 +1020,37 @@ R.drop(4, ['foo', 'bar', 'baz']); //=> []
 R.drop(3, 'ramda');               //=> 'da'
 ```
 Спробуйте у [REPL](http://ramdajs.com/repl/?v=0.25.0#?R.drop%281%2C%20%5B%27foo%27%2C%20%27bar%27%2C%20%27baz%27%5D%29%3B%20%2F%2F%3D%3E%20%5B%27bar%27%2C%20%27baz%27%5D%0AR.drop%282%2C%20%5B%27foo%27%2C%20%27bar%27%2C%20%27baz%27%5D%29%3B%20%2F%2F%3D%3E%20%5B%27baz%27%5D%0AR.drop%283%2C%20%5B%27foo%27%2C%20%27bar%27%2C%20%27baz%27%5D%29%3B%20%2F%2F%3D%3E%20%5B%5D%0AR.drop%284%2C%20%5B%27foo%27%2C%20%27bar%27%2C%20%27baz%27%5D%29%3B%20%2F%2F%3D%3E%20%5B%5D%0AR.drop%283%2C%20%27ramda%27%29%3B%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%2F%2F%3D%3E%20%27da%27)
+
+**[⬆ вверх](#Документація)**
+
+
+
+## dropLast
+
+### `[List]`
+
+`Number → [a] → [a]`
+`Number → String → String`
+
+| n | Кількість елементів списку, які треба пропустити. |
+:---|:---|
+| list | Список елементів який буде розглядатись. |
+| повертає __Array__ | Копія списку з лише першими `list.length - n` елементами. |
+
+_Додано у версії v0.16.0_
+
+Повертає список, який містить все окрім останніх `n` елементів переданого списку.
+
+Дивіться також [takeLast](https://github.com/ivanzusko/ramda/blob/master/DOCUMENTATION.md#takelast), [drop](https://github.com/ivanzusko/ramda/blob/master/DOCUMENTATION.md#drop), [dropWhile](https://github.com/ivanzusko/ramda/blob/master/DOCUMENTATION.md#dropwhile), [dropLastWhile](https://github.com/ivanzusko/ramda/blob/master/DOCUMENTATION.md#droplastwhile).
+
+```javascript
+R.dropLast(1, ['foo', 'bar', 'baz']); //=> ['foo', 'bar']
+R.dropLast(2, ['foo', 'bar', 'baz']); //=> ['foo']
+R.dropLast(3, ['foo', 'bar', 'baz']); //=> []
+R.dropLast(4, ['foo', 'bar', 'baz']); //=> []
+R.dropLast(3, 'ramda');               //=> 'ra'
+```
+Спробуйте у [REPL](http://ramdajs.com/repl/?v=0.25.0#?R.dropLast%281%2C%20%5B%27foo%27%2C%20%27bar%27%2C%20%27baz%27%5D%29%3B%20%2F%2F%3D%3E%20%5B%27foo%27%2C%20%27bar%27%5D%0AR.dropLast%282%2C%20%5B%27foo%27%2C%20%27bar%27%2C%20%27baz%27%5D%29%3B%20%2F%2F%3D%3E%20%5B%27foo%27%5D%0AR.dropLast%283%2C%20%5B%27foo%27%2C%20%27bar%27%2C%20%27baz%27%5D%29%3B%20%2F%2F%3D%3E%20%5B%5D%0AR.dropLast%284%2C%20%5B%27foo%27%2C%20%27bar%27%2C%20%27baz%27%5D%29%3B%20%2F%2F%3D%3E%20%5B%5D%0AR.dropLast%283%2C%20%27ramda%27%29%3B%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%2F%2F%3D%3E%20%27ra%27)
 
 **[⬆ вверх](#Документація)**
 
