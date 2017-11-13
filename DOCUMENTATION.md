@@ -42,8 +42,10 @@
 ## D
 - [descend](#descend) `Function`
 - [dissoc](#dissoc) `Object`
-- [dissocPath](#) ``
+- [dissocPath](#dissocpath) `Object`
+- [divide](#divide) `Math`
 - [drop](#drop) `List`
+- [dropWhile](#dropwhile) `List`
 
 **[⬆ вверх](#Документація)**
 
@@ -927,6 +929,65 @@ R.dissoc('b', {a: 1, b: 2, c: 3}); //=> {a: 1, c: 3}
 
 
 
+## dissocPath
+### `[Object]`
+
+`[Idx] → {k: v} → {k: v}`
+`Idx = String | Int`
+
+#### Параметри:
+| path | Шлях до значення, яке треба пропустити |
+:---|:---|
+| obj | Об'єкт, який потрібно клонувати |
+| повертає __Object__ | Новий об'єкт без властивості, яка знаходиться за зазначеним шляхом. |
+
+_Додано у версії v0.11.0_
+
+Робить поверхневу копію об'єкту, пропускаючи властивість за вказаним шляхом. Зауважте, що це також копіює і вирівнює властивості прототипу до нового об'єкту. Всі непримітивні властивості копіюються за посиланням.
+
+Дивіться також [assocPath](https://github.com/ivanzusko/ramda/blob/master/DOCUMENTATION.md#assocpath).
+
+```javascript
+R.dissocPath(['a', 'b', 'c'], {a: {b: {c: 42}}}); //=> {a: {b: {}}}
+```
+Спробуйте у [REPL](http://ramdajs.com/repl/?v=0.25.0#;R.dissocPath%28%5B%27a%27%2C%20%27b%27%2C%20%27c%27%5D%2C%20%7Ba%3A%20%7Bb%3A%20%7Bc%3A%2042%7D%7D%7D%29%3B%20%2F%2F%3D%3E%20%7Ba%3A%20%7Bb%3A%20%7B%7D%7D%7D)
+
+*[⬆ вверх](#Документація)**
+
+
+
+## divide
+### `[Math]`
+
+`Number → Number → Number`
+
+#### Параметри:
+| a | Перше значення. |
+:---|:---|
+| b | Друге значення. |
+| повертає __Number__ | Результат `a / b`. |
+
+_Додано у версії v0.1.0_
+
+Ділить два числа. Еквівалент для `a / b`.
+
+Дивіться також [multiply](https://github.com/ivanzusko/ramda/blob/master/DOCUMENTATION.md#multiply).
+
+```javascript
+R.divide(71, 100); //=> 0.71
+
+var half = R.divide(R.__, 2);
+half(42); //=> 21
+
+var reciprocal = R.divide(1);
+reciprocal(4);   //=> 0.25
+```
+Спробуйте у [REPL](http://ramdajs.com/repl/?v=0.25.0#?R.divide%2871%2C%20100%29%3B%20%2F%2F%3D%3E%200.71%0A%0Avar%20half%20%3D%20R.divide%28R.__%2C%202%29%3B%0Ahalf%2842%29%3B%20%2F%2F%3D%3E%2021%0A%0Avar%20reciprocal%20%3D%20R.divide%281%29%3B%0Areciprocal%284%29%3B%20%20%20%2F%2F%3D%3E%200.25)
+
+**[⬆ вверх](#Документація)**
+
+
+
 ## drop
 ### `[List]`
 
@@ -961,6 +1022,41 @@ R.drop(3, 'ramda');               //=> 'da'
 
 
 
+## dropWhile
+### `[List]`
+
+`(a → Boolean) → [a] → [a]`
+`(a → Boolean) → String → String`
+
+#### Параметри:
+| fn | Фунція, яка буде викликатися у кожній ітерації. |
+:---|:---|
+| xs | Колекція, яку треба ітерувати. |
+| повертає __Array__ | Новий масив. |
+
+_Додано у версії v0.9.0_
+
+Повертає новий список, виключаючи початкові елементи переданого списку, які вдовольняють умову переданого предикату. Ця функція передає кожне значення зі списку у наданий предикат, пропускаючи елементи, поки предикативна функція повертає `true`. Предика застосовується до одного елементу: _(value)_.
+
+Передає до `dropWhile` метод другого аргумента, якщо присутній.
+
+Поводить себе як трансдюсер, якщо на місці списку передано трансформер.
+
+Дивіться також [takeWhile](https://github.com/ivanzusko/ramda/blob/master/DOCUMENTATION.md#takewhile), [transduce](https://github.com/ivanzusko/ramda/blob/master/DOCUMENTATION.md#transduce), [addIndex](https://github.com/ivanzusko/ramda/blob/master/DOCUMENTATION.md#addindex).
+
+```javascript
+var lteTwo = x => x <= 2;
+
+R.dropWhile(lteTwo, [1, 2, 3, 4, 3, 2, 1]); //=> [3, 4, 3, 2, 1]
+
+R.dropWhile(x => x !== 'd' , 'Ramda'); //=> 'da'
+```
+Спробуйте у [REPL](http://ramdajs.com/repl/?v=0.25.0#;var%20lteTwo%20%3D%20x%20%3D%3E%20x%20%3C%3D%202%3B%0A%0AR.dropWhile%28lteTwo%2C%20%5B1%2C%202%2C%203%2C%204%2C%203%2C%202%2C%201%5D%29%3B%20%2F%2F%3D%3E%20%5B3%2C%204%2C%203%2C%202%2C%201%5D%0A%0AR.dropWhile%28x%20%3D%3E%20x%20%21%3D%3D%20%27d%27%20%2C%20%27Ramda%27%29%3B%20%2F%2F%3D%3E%20%27da%27)
+
+**[⬆ вверх](#Документація)**
+
+
+
 ## identity
 ### `[Function]`
 
@@ -979,7 +1075,7 @@ _Додано у версії v0.1.0_
 R.identity(1); //=> 1
 
 var obj = {};
-R.identity(obj) === obj; //=> true
+R.identity(obj) obj; //=> true
 ```
 Спробуйте у [REPL](http://ramdajs.com/repl/?v=0.24.1#?R.identity%281%29%3B%20%2F%2F%3D%3E%201%0A%0Avar%20obj%20%3D%20%7B%7D%3B%0AR.identity%28obj%29%20%3D%3D%3D%20obj%3B%20%2F%2F%3D%3E%20true)
 
