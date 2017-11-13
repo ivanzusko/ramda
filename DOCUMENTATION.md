@@ -47,6 +47,7 @@
 - [drop](#drop) `List`
 - [dropLast](#droplast) `List`
 - [dropLastWhile](#droplastwhile) `List`
+- [dropRepeats](#droprepeats) `List`
 - [dropWhile](#dropwhile) `List`
 
 **[⬆ вверх](#Документація)**
@@ -1083,6 +1084,33 @@ R.dropLastWhile(lteThree, [1, 2, 3, 4, 3, 2, 1]); //=> [1, 2, 3, 4]
 R.dropLastWhile(x => x !== 'd' , 'Ramda'); //=> 'Ramd'
 ```
 Спробуйте у [REPL](http://ramdajs.com/repl/?v=0.25.0#?var%20lteThree%20%3D%20x%20%3D%3E%20x%20%3C%3D%203%3B%0A%0AR.dropLastWhile%28lteThree%2C%20%5B1%2C%202%2C%203%2C%204%2C%203%2C%202%2C%201%5D%29%3B%20%2F%2F%3D%3E%20%5B1%2C%202%2C%203%2C%204%5D%0A%0AR.dropLastWhile%28x%20%3D%3E%20x%20%21%3D%3D%20%27d%27%20%2C%20%27Ramda%27%29%3B%20%2F%2F%3D%3E%20%27Ramd%27)
+
+**[⬆ вверх](#Документація)**
+
+
+
+## dropRepeats
+### `[List]`
+
+`[a] → [a]`
+
+#### Параметри:
+| list | Масив, який треба розглянути. |
+:---|:---|
+| повертає __Array__ | `list` без елементів, що повторюються. |
+
+_Додано у версії v0.14.0_
+
+Повертає новий список без елементів, що послідовно повторюються. Використовується `R.equals` для визначення рівності.
+
+Поводиться як трансдюсер, якщо передано трансформер замість списку.
+
+Дивіться також [transduce](https://github.com/ivanzusko/ramda/blob/master/DOCUMENTATION.md#transduce).
+
+```javascript
+R.dropRepeats([1, 1, 1, 2, 3, 4, 4, 2, 2]); //=> [1, 2, 3, 4, 2]
+```
+Спробуйте у [REPL](http://ramdajs.com/repl/?v=0.25.0#?R.dropRepeats%28%5B1%2C%201%2C%201%2C%202%2C%203%2C%204%2C%204%2C%202%2C%202%5D%29%3B%20%2F%2F%3D%3E%20%5B1%2C%202%2C%203%2C%204%2C%202%5D)
 
 **[⬆ вверх](#Документація)**
 
