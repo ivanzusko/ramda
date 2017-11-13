@@ -46,6 +46,7 @@
 - [divide](#divide) `Math`
 - [drop](#drop) `List`
 - [dropLast](#droplast) `List`
+- [dropLastWhile](#droplastwhile) `List`
 - [dropWhile](#dropwhile) `List`
 
 **[⬆ вверх](#Документація)**
@@ -1051,6 +1052,37 @@ R.dropLast(4, ['foo', 'bar', 'baz']); //=> []
 R.dropLast(3, 'ramda');               //=> 'ra'
 ```
 Спробуйте у [REPL](http://ramdajs.com/repl/?v=0.25.0#?R.dropLast%281%2C%20%5B%27foo%27%2C%20%27bar%27%2C%20%27baz%27%5D%29%3B%20%2F%2F%3D%3E%20%5B%27foo%27%2C%20%27bar%27%5D%0AR.dropLast%282%2C%20%5B%27foo%27%2C%20%27bar%27%2C%20%27baz%27%5D%29%3B%20%2F%2F%3D%3E%20%5B%27foo%27%5D%0AR.dropLast%283%2C%20%5B%27foo%27%2C%20%27bar%27%2C%20%27baz%27%5D%29%3B%20%2F%2F%3D%3E%20%5B%5D%0AR.dropLast%284%2C%20%5B%27foo%27%2C%20%27bar%27%2C%20%27baz%27%5D%29%3B%20%2F%2F%3D%3E%20%5B%5D%0AR.dropLast%283%2C%20%27ramda%27%29%3B%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%2F%2F%3D%3E%20%27ra%27)
+
+**[⬆ вверх](#Документація)**
+
+
+
+## dropLastWhile
+
+### `[List]`
+
+`(a → Boolean) → [a] → [a]`
+`(a → Boolean) → String → String`
+
+| predicate | Функція, яка має бути викликана для кожного елемента. |
+:---|:---|
+| xs | Колекція, яку треба ітерувати. |
+| повертає __Array__ | Новий масив, без елементів, які починаючи з кінця повертають `falsy` значення з функції-предиката(`predicate`). |
+
+_Додано у версії v0.16.0_
+
+Повертає новий список, без кінцевих елементів переданого списку, які задовольняють умову переданої функції-предикату. Вона передає кожне значення зправа до переданого предикату, відсіюючи елементи допоки функція-предикат повертає `falsy` значення. Функція-предикат застосовується до одного аргементу: (value).
+
+Дивіться також [takeLastWhile](https://github.com/ivanzusko/ramda/blob/master/DOCUMENTATION.md#takelastwhile), [addIndex](https://github.com/ivanzusko/ramda/blob/master/DOCUMENTATION.md#addindex), [drop](https://github.com/ivanzusko/ramda/blob/master/DOCUMENTATION.md#drop), [dropWhile](https://github.com/ivanzusko/ramda/blob/master/DOCUMENTATION.md#dropwhile).
+
+```javascript
+var lteThree = x => x <= 3;
+
+R.dropLastWhile(lteThree, [1, 2, 3, 4, 3, 2, 1]); //=> [1, 2, 3, 4]
+
+R.dropLastWhile(x => x !== 'd' , 'Ramda'); //=> 'Ramd'
+```
+Спробуйте у [REPL](http://ramdajs.com/repl/?v=0.25.0#?var%20lteThree%20%3D%20x%20%3D%3E%20x%20%3C%3D%203%3B%0A%0AR.dropLastWhile%28lteThree%2C%20%5B1%2C%202%2C%203%2C%204%2C%203%2C%202%2C%201%5D%29%3B%20%2F%2F%3D%3E%20%5B1%2C%202%2C%203%2C%204%5D%0A%0AR.dropLastWhile%28x%20%3D%3E%20x%20%21%3D%3D%20%27d%27%20%2C%20%27Ramda%27%29%3B%20%2F%2F%3D%3E%20%27Ramd%27)
 
 **[⬆ вверх](#Документація)**
 
