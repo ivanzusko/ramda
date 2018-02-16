@@ -39,7 +39,7 @@ Ramda
 * [Введення в Ramda](http://buzzdecafe.github.io/code/2014/05/16/introducing-ramda) by Buzz de Cafe
 * [Чому Ramda?](http://fr.umio.us/why-ramda/) by Scott Sauyet
 * [Сприяння каррінгу](http://fr.umio.us/favoring-curry/) by Scott Sauyet
-* [Чому кіррінг допомогає](https://hughfdjackson.com/javascript/why-curry-helps/) by Hugh Jackson
+* [Чому кaррінг допомогає](https://hughfdjackson.com/javascript/why-curry-helps/) by Hugh Jackson
 * [Агов, Underscore, ти робиш це неправильно!](https://www.youtube.com/watch?v=m3svKOdZijA&app=desktop) by Brian Lonsdorf
 * [Думати в Ramda](http://randycoulman.com/blog/categories/thinking-in-ramda) by Randy Coulman
 
