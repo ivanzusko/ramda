@@ -30,7 +30,7 @@ Ramda
 
 * Параметри у Ramda функціях розташовані таким чином, щоб зробити каррінг якомога зручнішим. Дані, які мають бути обробленими, як правило, подаються в останню чергу.
 
-Останні два пункти разом роблять дуже легким створення функцій у вигляді послідовності простих функцій, кожна з яких перетворює дані та передає їх до наступної. Ramda зпроектована для підтримки такого стилю написання коду.
+Останні два пункти разом роблять дуже легким створення функцій у вигляді послідовності простих функцій, кожна з яких перетворює дані та передає їх до наступної. Ramda cпроектована для підтримки такого стилю написання коду.
 
 
 Введення
@@ -39,7 +39,7 @@ Ramda
 * [Введення в Ramda](http://buzzdecafe.github.io/code/2014/05/16/introducing-ramda) by Buzz de Cafe
 * [Чому Ramda?](http://fr.umio.us/why-ramda/) by Scott Sauyet
 * [Сприяння каррінгу](http://fr.umio.us/favoring-curry/) by Scott Sauyet
-* [Чому кіррінг допомогає](https://hughfdjackson.com/javascript/why-curry-helps/) by Hugh Jackson
+* [Чому кaррінг допомогає](https://hughfdjackson.com/javascript/why-curry-helps/) by Hugh Jackson
 * [Агов, Underscore, ти робиш це неправильно!](https://www.youtube.com/watch?v=m3svKOdZijA&app=desktop) by Brian Lonsdorf
 * [Думати в Ramda](http://randycoulman.com/blog/categories/thinking-in-ramda) by Randy Coulman
 
@@ -89,7 +89,7 @@ const R = require('ramda');
 <script src="//cdnjs.cloudflare.com/ajax/libs/ramda/0.24.1/ramda.min.js"></script>
 ```
 
-чи за допомогою одного з посиланнь наведених нижче з [jsDelivr](http://jsdelivr.com):
+чи за допомогою одного з посилань наведених нижче з [jsDelivr](http://jsdelivr.com):
 
 ```html
 <script src="//cdn.jsdelivr.net/ramda/0.24.1/ramda.min.js"></script>
@@ -153,7 +153,7 @@ const R = require('ramda');
 
 **Браузер:**
 
-Ви можете використовувати [testem](https://github.com/airportyh/testem) для тестування у різних браузерах (и навіть у "бузголових" браузрах), з миттєвим перезавантаженням тестівю. Встановіть __testem__ (`npm install -g testem`) і виконайте `testem`. Відкрийте посилання яке надасть вам ваш браузер і ви побачите результати у вашому терміналі.
+Ви можете використовувати [testem](https://github.com/airportyh/testem) для тестування у різних браузерах (и навіть у "безголових" браузерах), з миттєвим перезавантаженням тестівю. Встановіть __testem__ (`npm install -g testem`) і виконайте `testem`. Відкрийте посилання яке надасть вам ваш браузер і ви побачите результати у вашому терміналі.
 
 Якщо у вас встановлений _PhantomJS_ , ви можете виконати `testem -l phantomjs` для запуску тестів повністю у "безголовому" режимі.
 
