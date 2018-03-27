@@ -40,6 +40,7 @@
 **[⬆ вверх](#Документація)**
 
 ## D
+- [dec](#dec) `Math`
 - [descend](#descend) `Function`
 - [dissoc](#dissoc) `Object`
 - [dissocPath](#dissocpath) `Object`
@@ -871,6 +872,31 @@ var strangeConcat = R.converge(R.concat, [R.toUpper, R.toLower])
 strangeConcat("Yodel") //=> "YODELyodel"
 ```
 Спробуйте у [REPL](http://ramdajs.com/repl/?v=0.24.1#;var%20average%20%3D%20R.converge%28R.divide%2C%20%5BR.sum%2C%20R.length%5D%29%0Aaverage%28%5B1%2C%202%2C%203%2C%204%2C%205%2C%206%2C%207%5D%29%20%2F%2F%3D%3E%204%0A%0Avar%20strangeConcat%20%3D%20R.converge%28R.concat%2C%20%5BR.toUpper%2C%20R.toLower%5D%29%0AstrangeConcat%28%22Yodel%22%29%20%2F%2F%3D%3E%20%22YODELyodel%22)
+
+**[⬆ вверх](#Документація)**
+
+
+
+## dec
+### `[Math]`
+
+`Number → Number`
+
+#### Параметри:
+| n |
+:---|
+| повертає __Number__ n - 1 |
+
+_Додано у версії v0.9.0_
+
+Зменшує свій аргумент.
+
+Дивіться також [inc](https://github.com/ivanzusko/ramda/blob/master/DOCUMENTATION.md#inc).
+
+```javascript
+R.dec(42); //=> 41
+```
+Спробуйте у [REPL](http://ramdajs.com/repl/?v=0.25.0#;R.dec%2842%29%3B%20%2F%2F%3D%3E%2041)
 
 **[⬆ вверх](#Документація)**
 
