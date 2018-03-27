@@ -41,6 +41,7 @@
 
 ## D
 - [dec](#dec) `Math`
+- [defaultTo](#defaultTo) `Logic`
 - [descend](#descend) `Function`
 - [dissoc](#dissoc) `Object`
 - [dissocPath](#dissocpath) `Object`
@@ -897,6 +898,36 @@ _Додано у версії v0.9.0_
 R.dec(42); //=> 41
 ```
 Спробуйте у [REPL](http://ramdajs.com/repl/?v=0.25.0#;R.dec%2842%29%3B%20%2F%2F%3D%3E%2041)
+
+**[⬆ вверх](#Документація)**
+
+
+
+## defaultTo
+### `[Logic]`
+
+`a → b → a | b`
+
+#### Параметри:
+| default | Значення за замовчуванням |
+| val | `val` буде повернуто замість значення за замовчуванням, доки `val` не є `null`, `undefined` або `NaN` |
+:---|:---|
+| _повертає_ * | Друге значення, якщо воно не є `null`, `undefined` або `NaN`, в іншому разі повертає значення за замовчуванням  |
+
+_Додано у версії v0.10.0_
+
+Повертає другий аргумент, якщо він не `null`, `undefined` або `NaN`, в іншому випадку повертає значення за замовчуванням.
+
+```javascript
+var defaultTo42 = R.defaultTo(42);
+
+defaultTo42(null);  //=> 42
+defaultTo42(undefined);  //=> 42
+defaultTo42('Ramda');  //=> 'Ramda'
+// parseInt('string') results in NaN
+defaultTo42(parseInt('string')); //=> 42
+```
+Спробуйте у [REPL](http://ramdajs.com/repl/?v=0.25.0#;var%20defaultTo42%20%3D%20R.defaultTo%2842%29%3B%0A%0AdefaultTo42%28null%29%3B%20%20%2F%2F%3D%3E%2042%0AdefaultTo42%28undefined%29%3B%20%20%2F%2F%3D%3E%2042%0AdefaultTo42%28%27Ramda%27%29%3B%20%20%2F%2F%3D%3E%20%27Ramda%27%0A%2F%2F%20parseInt%28%27string%27%29%20results%20in%20NaN%0AdefaultTo42%28parseInt%28%27string%27%29%29%3B%20%2F%2F%3D%3E%2042)
 
 **[⬆ вверх](#Документація)**
 
