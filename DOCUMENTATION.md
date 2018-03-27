@@ -41,7 +41,7 @@
 
 ## D
 - [dec](#dec) `Math`
-- [defaultTo](#defaultTo) `Logic`
+- [defaultTo](#defaultto) `Logic`
 - [descend](#descend) `Function`
 - [dissoc](#dissoc) `Object`
 - [dissocPath](#dissocpath) `Object`
