@@ -44,6 +44,7 @@
 - [defaultTo](#defaultto) `Logic`
 - [descend](#descend) `Function`
 - [difference](#difference) `Relation`
+- [differenceWith](#differencewith) `Relation`
 - [dissoc](#dissoc) `Object`
 - [dissocPath](#dissocpath) `Object`
 - [divide](#divide) `Math`
@@ -988,6 +989,36 @@ R.difference([7,6,5,4,3], [1,2,3,4]); //=> [7,6,5]
 R.difference([{a: 1}, {b: 2}], [{a: 1}, {c: 3}]) //=> [{b: 2}]
 ```
 Спробуйте у [REPL](https://ramdajs.com/repl/?v=0.25.0#?R.difference%28%5B1%2C2%2C3%2C4%5D%2C%20%5B7%2C6%2C5%2C4%2C3%5D%29%3B%20%2F%2F%3D%3E%20%5B1%2C2%5D%0AR.difference%28%5B7%2C6%2C5%2C4%2C3%5D%2C%20%5B1%2C2%2C3%2C4%5D%29%3B%20%2F%2F%3D%3E%20%5B7%2C6%2C5%5D%0AR.difference%28%5B%7Ba%3A%201%7D%2C%20%7Bb%3A%202%7D%5D%2C%20%5B%7Ba%3A%201%7D%2C%20%7Bc%3A%203%7D%5D%29%20%2F%2F%3D%3E%20%5B%7Bb%3A%202%7D%5D)
+
+**[⬆ вверх](#Документація)**
+
+
+
+## differenceWith
+### `[Relation]`
+
+`((a, a) → Boolean) → [a] → [a] → [a]`
+
+#### Параметри:
+| pred | Предикат, який використовується для з'ясування чи два елементи рівні між собою. |
+:---|:---|
+| list1 | Перший список. |
+| list2 | Другий список. |
+| Повертає __Array__ | Повертає масив елементів зі списку `list1`, яких немає у списку `list2`. |
+
+_Додано у версії v0.1.0_
+
+Знаходить набір елементів першого списку, яких немає у другому списку. Повторюваність елементів виявляється згідно зі значенням, яке повертається після застосування наданого предикату щодо обох списків.
+
+Дивіться також [difference](https://github.com/ivanzusko/ramda/blob/master/DOCUMENTATION.md#difference), [symmetricDifference](https://github.com/ivanzusko/ramda/blob/master/DOCUMENTATION.md#symmetricdifference), [symmetricDifferenceWith](https://github.com/ivanzusko/ramda/blob/master/DOCUMENTATION.md#symmetricdifferencewith).
+
+```javascript
+var cmp = (x, y) => x.a === y.a;
+var l1 = [{a: 1}, {a: 2}, {a: 3}];
+var l2 = [{a: 3}, {a: 4}];
+R.differenceWith(cmp, l1, l2); //=> [{a: 1}, {a: 2}]
+```
+Спробуйте у [REPL](https://ramdajs.com/repl/?v=0.25.0#?var%20cmp%20%3D%20%28x%2C%20y%29%20%3D%3E%20x.a%20%3D%3D%3D%20y.a%3B%0Avar%20l1%20%3D%20%5B%7Ba%3A%201%7D%2C%20%7Ba%3A%202%7D%2C%20%7Ba%3A%203%7D%5D%3B%0Avar%20l2%20%3D%20%5B%7Ba%3A%203%7D%2C%20%7Ba%3A%204%7D%5D%3B%0AR.differenceWith%28cmp%2C%20l1%2C%20l2%29%3B%20%2F%2F%3D%3E%20%5B%7Ba%3A%201%7D%2C%20%7Ba%3A%202%7D%5D)
 
 **[⬆ вверх](#Документація)**
 
