@@ -972,9 +972,9 @@ var peopleByOldestFirst = R.sort(byAge, people);
 `[*] → [*] → [*]`
 
 #### Параметри:
-| list1 | The first list. |
+| list1 | Перший список. |
 :---|:---|
-| list2 |The secon list. |
+| list2 | Другий список. |
 | Повертає __Array__ | Повертає масив елементів зі списку `list1`, яких немає у списку `list2`. |
 
 _Додано у версії v0.1.0_
