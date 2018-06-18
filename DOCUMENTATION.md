@@ -43,6 +43,7 @@
 - [dec](#dec) `Math`
 - [defaultTo](#defaultto) `Logic`
 - [descend](#descend) `Function`
+- [difference](#difference) `Relation`
 - [dissoc](#dissoc) `Object`
 - [dissocPath](#dissocpath) `Object`
 - [divide](#divide) `Math`
@@ -959,6 +960,34 @@ var people = [
 var peopleByOldestFirst = R.sort(byAge, people);
 ```
 Спробуйте у [REPL](http://ramdajs.com/repl/?v=0.24.1#?var%20byAge%20%3D%20R.descend%28R.prop%28%27age%27%29%29%3B%0Avar%20people%20%3D%20%5B%0A%20%20%2F%2F%20...%0A%5D%3B%0Avar%20peopleByOldestFirst%20%3D%20R.sort%28byAge%2C%20people%29%3B)
+
+**[⬆ вверх](#Документація)**
+
+
+
+## difference
+### `[Relation]`
+
+`[*] → [*] → [*]`
+
+#### Параметри:
+| list1 | The first list. |
+:---|:---|
+| list2 |The secon list. |
+| Повертає __Array__ | Повертає масив елементів зі списку `list1`, яких немає у списку `list2`. |
+
+_Додано у версії v0.1.0_
+
+Знаходить набір(неповторюваних) елементів з першого списку, яких немає у другому списку. Об'єкти та масиви порівнюються з точки зору рівності значень, а не рівності посиланнь.
+
+Дивіться також [differenceWith](https://github.com/ivanzusko/ramda/blob/master/DOCUMENTATION.md#differencewidth), [symmetricDifference](https://github.com/ivanzusko/ramda/blob/master/DOCUMENTATION.md#symmetricdifference), [symmetricDifferenceWith](https://github.com/ivanzusko/ramda/blob/master/DOCUMENTATION.md#symmetricdifferencewith), [without](https://github.com/ivanzusko/ramda/blob/master/DOCUMENTATION.md#without).
+
+```javascript
+R.difference([1,2,3,4], [7,6,5,4,3]); //=> [1,2]
+R.difference([7,6,5,4,3], [1,2,3,4]); //=> [7,6,5]
+R.difference([{a: 1}, {b: 2}], [{a: 1}, {c: 3}]) //=> [{b: 2}]
+```
+Спробуйте у [REPL](https://ramdajs.com/repl/?v=0.25.0#?R.difference%28%5B1%2C2%2C3%2C4%5D%2C%20%5B7%2C6%2C5%2C4%2C3%5D%29%3B%20%2F%2F%3D%3E%20%5B1%2C2%5D%0AR.difference%28%5B7%2C6%2C5%2C4%2C3%5D%2C%20%5B1%2C2%2C3%2C4%5D%29%3B%20%2F%2F%3D%3E%20%5B7%2C6%2C5%5D%0AR.difference%28%5B%7Ba%3A%201%7D%2C%20%7Bb%3A%202%7D%5D%2C%20%5B%7Ba%3A%201%7D%2C%20%7Bc%3A%203%7D%5D%29%20%2F%2F%3D%3E%20%5B%7Bb%3A%202%7D%5D)
 
 **[⬆ вверх](#Документація)**
 
