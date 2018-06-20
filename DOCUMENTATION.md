@@ -35,6 +35,7 @@
 - [call](#call) `Function`
 - [chain](#chain) `List`
 - [clamp](#clamp) `Relation`
+- [clone](#clone) `Object`
 - [compose](#compose) `Function`
 - [converge](#converge) `Function`
 
@@ -844,6 +845,34 @@ R.clamp(1, 10, 15) // => 10
 R.clamp(1, 10, 4)  // => 4
 ```
 Спробуйте у [REPL](https://ramdajs.com/repl/?v=0.25.0#?R.clamp%281%2C%2010%2C%20-5%29%20%2F%2F%20%3D%3E%201%0AR.clamp%281%2C%2010%2C%2015%29%20%2F%2F%20%3D%3E%2010%0AR.clamp%281%2C%2010%2C%204%29%20%20%2F%2F%20%3D%3E%204)
+
+**[⬆ вверх](#Документація)**
+
+
+
+## clone
+### `[Object]`
+
+`{*} → {*}`
+
+#### Параметри:
+| value | Об'єкт або масив, який потрібно зклонувати |
+:---|:---|
+| Повертає __*__ | Глибоку копію переданого об'єкта/масива(`val`) |
+
+Додано у версії __v0.1.0__
+
+Створює глибоку копію значення, яке може містити(вкладений) масиви(`Array`), об'єкти(`Object`), числа(`Number`), рядки(`String`), булеві значення(`Boolean`) та дати(`Date`). Функції призначаються за посиланням, а не копіюються.
+
+Передає до `clone` метод, якщо той присутній.
+
+```javascript
+var objects = [{}, {}, {}];
+var objectsClone = R.clone(objects);
+objects === objectsClone; //=> false
+objects[0] === objectsClone[0]; //=> false
+```
+Спробуйте у [REPL](https://ramdajs.com/repl/?v=0.25.0#?var%20objects%20%3D%20%5B%7B%7D%2C%20%7B%7D%2C%20%7B%7D%5D%3B%0Avar%20objectsClone%20%3D%20R.clone%28objects%29%3B%0Aobjects%20%3D%3D%3D%20objectsClone%3B%20%2F%2F%3D%3E%20false%0Aobjects%5B0%5D%20%3D%3D%3D%20objectsClone%5B0%5D%3B%20%2F%2F%3D%3E%20false)
 
 **[⬆ вверх](#Документація)**
 
