@@ -1,6 +1,6 @@
 # Документація
 
-[A](#a), [B](#b), [C](#c), [D](#d), [J](#j), [I](#i), [M](#m), [N](#n), [P](#p), [R](#r), [S](#s), [T](#t), [U](#u), [X](#x), [Z](#z)
+[A](#a), [B](#b), [C](#c), [D](#d), [J](#j), [I](#i), [M](#m), [N](#n), [O](#o), [P](#p), [R](#r), [S](#s), [T](#t), [U](#u), [X](#x), [Z](#z)
 
 ## A
 - [__](#__) `Function`
@@ -35,6 +35,7 @@
 - [call](#call) `Function`
 - [chain](#chain) `List`
 - [clamp](#clamp) `Relation`
+- [clone](#clone) `Object`
 - [compose](#compose) `Function`
 - [converge](#converge) `Function`
 
@@ -77,6 +78,11 @@
 ## N
 - [nAry](#) ``
 - [none](#none) `List`
+
+**[⬆ вверх](#Документація)**
+
+## O
+- [once](#once) `Function`
 
 **[⬆ вверх](#Документація)**
 
@@ -849,6 +855,34 @@ R.clamp(1, 10, 4)  // => 4
 
 
 
+## clone
+### `[Object]`
+
+`{*} → {*}`
+
+#### Параметри:
+| value | Об'єкт або масив, який потрібно зклонувати |
+:---|:---|
+| Повертає __*__ | Глибоку копію переданого об'єкта/масива(`val`) |
+
+Додано у версії __v0.1.0__
+
+Створює глибоку копію значення, яке може містити(вкладений) масиви(`Array`), об'єкти(`Object`), числа(`Number`), рядки(`String`), булеві значення(`Boolean`) та дати(`Date`). Функції призначаються за посиланням, а не копіюються.
+
+Передає до `clone` метод, якщо той присутній.
+
+```javascript
+var objects = [{}, {}, {}];
+var objectsClone = R.clone(objects);
+objects === objectsClone; //=> false
+objects[0] === objectsClone[0]; //=> false
+```
+Спробуйте у [REPL](https://ramdajs.com/repl/?v=0.25.0#?var%20objects%20%3D%20%5B%7B%7D%2C%20%7B%7D%2C%20%7B%7D%5D%3B%0Avar%20objectsClone%20%3D%20R.clone%28objects%29%3B%0Aobjects%20%3D%3D%3D%20objectsClone%3B%20%2F%2F%3D%3E%20false%0Aobjects%5B0%5D%20%3D%3D%3D%20objectsClone%5B0%5D%3B%20%2F%2F%3D%3E%20false)
+
+**[⬆ вверх](#Документація)**
+
+
+
 ## compose
 ### `[Function]`
 
@@ -1461,6 +1495,31 @@ R.none(isEven, [1, 3, 5, 7, 8, 11]); //=> false
 
 
 
+## once
+### `[Function]`
+
+`(a… → b) → (a… → b)`
+
+#### Параметри:
+| fn | Функція, яка має бути обгорнута у "викликати-лише-раз"(`call-only-once`) обгортку. |
+:---|:---|
+| Повертає **Function** | Повертає обгорнуту функцію. |
+
+_Додано у версії v0.1.0_
+
+Приймає функцію `fn` і повертає функцію, яка забезпечує виклик функції `fn` таким чином, що `fn` може бути викликана лише одни раз, в незалежності від того, скільки разів викликається повертаєма функція. Вперше вираховане значення буде повернене при всіх подальших викликах.
+
+```javascript
+var addOneOnce = R.once(x => x + 1);
+addOneOnce(10); //=> 11
+addOneOnce(addOneOnce(50)); //=> 11
+```
+Спробуйте у [REPL](https://ramdajs.com/repl/?v=0.25.0#?var%20addOneOnce%20%3D%20R.once%28x%20%3D%3E%20x%20%2B%201%29%3B%0AaddOneOnce%2810%29%3B%20%2F%2F%3D%3E%2011%0AaddOneOnce%28addOneOnce%2850%29%29%3B%20%2F%2F%3D%3E%2011)
+
+**[⬆ вверх](#Документація)**
+
+
+
 ## partial
 ### `[Function]`
 
@@ -1491,8 +1550,6 @@ var sayHelloToMs = R.partial(sayHello, ['Ms.']);
 sayHelloToMs('Jane', 'Jones'); //=> 'Hello, Ms. Jane Jones!'
 ```
 Спробуйте у [REPL](https://ramdajs.com/repl/?v=0.25.0#?var%20multiply2%20%3D%20%28a%2C%20b%29%20%3D%3E%20a%20%2A%20b%3B%0Avar%20double%20%3D%20R.partial%28multiply2%2C%20%5B2%5D%29%3B%0Adouble%282%29%3B%20%2F%2F%3D%3E%204%0A%0Avar%20greet%20%3D%20%28salutation%2C%20title%2C%20firstName%2C%20lastName%29%20%3D%3E%0A%20%20salutation%20%2B%20%27%2C%20%27%20%2B%20title%20%2B%20%27%20%27%20%2B%20firstName%20%2B%20%27%20%27%20%2B%20lastName%20%2B%20%27%21%27%3B%0A%0Avar%20sayHello%20%3D%20R.partial%28greet%2C%20%5B%27Hello%27%5D%29%3B%0Avar%20sayHelloToMs%20%3D%20R.partial%28sayHello%2C%20%5B%27Ms.%27%5D%29%3B%0AsayHelloToMs%28%27Jane%27%2C%20%27Jones%27%29%3B%20%2F%2F%3D%3E%20%27Hello%2C%20Ms.%20Jane%20Jones%21%27)
-
-**[⬆ вверх](#Документація)**
 
 
 
