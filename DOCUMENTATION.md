@@ -87,7 +87,7 @@
 **[⬆ вверх](#Документація)**
 
 ## P
-- [partial](#) ``
+- [partial](#partial) `Function`
 - [path](#path) `Object`
 - [pathEq](#patheq) `Relation`
 - [pipe](#pipe) `Function`
@@ -1517,6 +1517,39 @@ addOneOnce(addOneOnce(50)); //=> 11
 Спробуйте у [REPL](https://ramdajs.com/repl/?v=0.25.0#?var%20addOneOnce%20%3D%20R.once%28x%20%3D%3E%20x%20%2B%201%29%3B%0AaddOneOnce%2810%29%3B%20%2F%2F%3D%3E%2011%0AaddOneOnce%28addOneOnce%2850%29%29%3B%20%2F%2F%3D%3E%2011)
 
 **[⬆ вверх](#Документація)**
+
+
+
+## partial
+### `[Function]`
+
+`((a, b, c, …, n) → x) → [a, b, c, …] → ((d, e, f, …, n) → x)`
+
+#### Параметри:
+| f | Функція |
+:---|:---|
+| args | Перелік аргументів |
+| Повертає **Фунцію** | |
+
+_Додано у версії v0.10.0_
+
+Приймає функцію `f` та список аргументів `args` і повертає функцію(скажімо `g`). Коли застосована, функція `g` повертає результат застосуання функції `f` щодо аргументів `args`, котрі були передані зпочатку, і слідом повертає аргументи передані у функцію `g`.
+
+Дивіться також [partialRight](https://github.com/ivanzusko/ramda/blob/master/DOCUMENTATION.md#partialright).
+
+```javascript
+var multiply2 = (a, b) => a * b;
+var double = R.partial(multiply2, [2]);
+double(2); //=> 4
+
+var greet = (salutation, title, firstName, lastName) =>
+  salutation + ', ' + title + ' ' + firstName + ' ' + lastName + '!';
+
+var sayHello = R.partial(greet, ['Hello']);
+var sayHelloToMs = R.partial(sayHello, ['Ms.']);
+sayHelloToMs('Jane', 'Jones'); //=> 'Hello, Ms. Jane Jones!'
+```
+Спробуйте у [REPL](https://ramdajs.com/repl/?v=0.25.0#?var%20multiply2%20%3D%20%28a%2C%20b%29%20%3D%3E%20a%20%2A%20b%3B%0Avar%20double%20%3D%20R.partial%28multiply2%2C%20%5B2%5D%29%3B%0Adouble%282%29%3B%20%2F%2F%3D%3E%204%0A%0Avar%20greet%20%3D%20%28salutation%2C%20title%2C%20firstName%2C%20lastName%29%20%3D%3E%0A%20%20salutation%20%2B%20%27%2C%20%27%20%2B%20title%20%2B%20%27%20%27%20%2B%20firstName%20%2B%20%27%20%27%20%2B%20lastName%20%2B%20%27%21%27%3B%0A%0Avar%20sayHello%20%3D%20R.partial%28greet%2C%20%5B%27Hello%27%5D%29%3B%0Avar%20sayHelloToMs%20%3D%20R.partial%28sayHello%2C%20%5B%27Ms.%27%5D%29%3B%0AsayHelloToMs%28%27Jane%27%2C%20%27Jones%27%29%3B%20%2F%2F%3D%3E%20%27Hello%2C%20Ms.%20Jane%20Jones%21%27)
 
 
 
