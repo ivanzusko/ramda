@@ -1,6 +1,6 @@
 # Документація
 
-[A](#a), [B](#b), [C](#c), [D](#d), [J](#j), [I](#i), [M](#m), [N](#n), [P](#p), [R](#r), [S](#s), [T](#t), [U](#u), [X](#x), [Z](#z)
+[A](#a), [B](#b), [C](#c), [D](#d), [J](#j), [I](#i), [M](#m), [N](#n), [O](#o), [P](#p), [R](#r), [S](#s), [T](#t), [U](#u), [X](#x), [Z](#z)
 
 ## A
 - [__](#__) `Function`
@@ -34,13 +34,19 @@
 ## C
 - [call](#call) `Function`
 - [chain](#chain) `List`
+- [clamp](#clamp) `Relation`
+- [clone](#clone) `Object`
 - [compose](#compose) `Function`
 - [converge](#converge) `Function`
 
 **[⬆ вверх](#Документація)**
 
 ## D
+- [dec](#dec) `Math`
+- [defaultTo](#defaultto) `Logic`
 - [descend](#descend) `Function`
+- [difference](#difference) `Relation`
+- [differenceWith](#differencewith) `Relation`
 - [dissoc](#dissoc) `Object`
 - [dissocPath](#dissocpath) `Object`
 - [divide](#divide) `Math`
@@ -48,6 +54,7 @@
 - [dropLast](#droplast) `List`
 - [dropLastWhile](#droplastwhile) `List`
 - [dropRepeats](#droprepeats) `List`
+- [dropRepeatsWith](#droprepeatswith) `List`
 - [dropWhile](#dropwhile) `List`
 
 **[⬆ вверх](#Документація)**
@@ -74,8 +81,13 @@
 
 **[⬆ вверх](#Документація)**
 
+## O
+- [once](#once) `Function`
+
+**[⬆ вверх](#Документація)**
+
 ## P
-- [partial](#) ``
+- [partial](#partial) `Function`
 - [path](#path) `Object`
 - [pathEq](#patheq) `Relation`
 - [pipe](#pipe) `Function`
@@ -226,10 +238,10 @@ _Додано у версії v0.14.0_
 Дивіться також [update](https://github.com/ivanzusko/ramda/blob/master/DOCUMENTATION.md#update).
 
 ```javascript
-R.adjust(R.add(10), 1, [1, 2, 3]);     //=> [1, 12, 3]
-R.adjust(R.add(10))(1)([1, 2, 3]);     //=> [1, 12, 3]
+R.adjust(1, R.add(10), [1, 2, 3]);     //=> [1, 12, 3]
+R.adjust(1)(R.add(10))([1, 2, 3]);     //=> [1, 12, 3]
 ```
-Спробуйте у [REPL](http://ramdajs.com/repl/?v=0.24.1#?R.adjust%28R.add%2810%29%2C%201%2C%20%5B1%2C%202%2C%203%5D%29%3B%20%20%20%20%20%2F%2F%3D%3E%20%5B1%2C%2012%2C%203%5D%0AR.adjust%28R.add%2810%29%29%281%29%28%5B1%2C%202%2C%203%5D%29%3B%20%20%20%20%20%2F%2F%3D%3E%20%5B1%2C%2012%2C%203%5D)
+Спробуйте у [REPL](https://ramdajs.com/repl/?v=0.26.1#?R.adjust%281%2C%20R.add%2810%29%2C%20%5B1%2C%202%2C%203%5D%29%3B%20%20%20%20%20%2F%2F%3D%3E%20%5B1%2C%2012%2C%203%5D%0AR.adjust%281%29%28R.add%2810%29%29%28%5B1%2C%202%2C%203%5D%29%3B%20%20%20%20%20%2F%2F%3D%3E%20%5B1%2C%2012%2C%203%5D)
 
 **[⬆ вверх](#Документація)**
 
@@ -814,6 +826,63 @@ R.chain(R.append, R.head)([1, 2, 3]); //=> [1, 2, 3, 1]
 
 
 
+## clamp
+### `[Relation]`
+
+`Ord a => a → a → a → a`
+
+#### Параметри:
+| minimum | Нижня межа діапазону(включно) |
+:---|:---|
+| maximum | Верхня межа діапазону(включно) |
+| value | Значення для закріплення в діапазоні |
+| Повертає __Number__ | Повертає `minimum`, коли значення менше за мінімум(`value < minimum`), `maximum`, коли значення більше за максимум(`value > maximum`), в усіх інших випадках повертає саме значення(`value`) |
+
+Додано у версії __v0.20.0__
+
+Обмежує число межами діапазону.
+
+Також працює для інших впорядкованих типів, таких як строки(_Strings_) та дати(_Dates_)
+
+```javascript
+R.clamp(1, 10, -5) // => 1
+R.clamp(1, 10, 15) // => 10
+R.clamp(1, 10, 4)  // => 4
+```
+Спробуйте у [REPL](https://ramdajs.com/repl/?v=0.25.0#?R.clamp%281%2C%2010%2C%20-5%29%20%2F%2F%20%3D%3E%201%0AR.clamp%281%2C%2010%2C%2015%29%20%2F%2F%20%3D%3E%2010%0AR.clamp%281%2C%2010%2C%204%29%20%20%2F%2F%20%3D%3E%204)
+
+**[⬆ вверх](#Документація)**
+
+
+
+## clone
+### `[Object]`
+
+`{*} → {*}`
+
+#### Параметри:
+| value | Об'єкт або масив, який потрібно зклонувати |
+:---|:---|
+| Повертає __*__ | Глибоку копію переданого об'єкта/масива(`val`) |
+
+Додано у версії __v0.1.0__
+
+Створює глибоку копію значення, яке може містити(вкладений) масиви(`Array`), об'єкти(`Object`), числа(`Number`), рядки(`String`), булеві значення(`Boolean`) та дати(`Date`). Функції призначаються за посиланням, а не копіюються.
+
+Передає до `clone` метод, якщо той присутній.
+
+```javascript
+var objects = [{}, {}, {}];
+var objectsClone = R.clone(objects);
+objects === objectsClone; //=> false
+objects[0] === objectsClone[0]; //=> false
+```
+Спробуйте у [REPL](https://ramdajs.com/repl/?v=0.25.0#?var%20objects%20%3D%20%5B%7B%7D%2C%20%7B%7D%2C%20%7B%7D%5D%3B%0Avar%20objectsClone%20%3D%20R.clone%28objects%29%3B%0Aobjects%20%3D%3D%3D%20objectsClone%3B%20%2F%2F%3D%3E%20false%0Aobjects%5B0%5D%20%3D%3D%3D%20objectsClone%5B0%5D%3B%20%2F%2F%3D%3E%20false)
+
+**[⬆ вверх](#Документація)**
+
+
+
 ## compose
 ### `[Function]`
 
@@ -875,6 +944,61 @@ strangeConcat("Yodel") //=> "YODELyodel"
 
 
 
+## dec
+### `[Math]`
+
+`Number → Number`
+
+#### Параметри:
+| n |
+:---|
+| повертає __Number__ n - 1 |
+
+_Додано у версії v0.9.0_
+
+Зменшує свій аргумент.
+
+Дивіться також [inc](https://github.com/ivanzusko/ramda/blob/master/DOCUMENTATION.md#inc).
+
+```javascript
+R.dec(42); //=> 41
+```
+Спробуйте у [REPL](http://ramdajs.com/repl/?v=0.25.0#;R.dec%2842%29%3B%20%2F%2F%3D%3E%2041)
+
+**[⬆ вверх](#Документація)**
+
+
+
+## defaultTo
+### `[Logic]`
+
+`a → b → a | b`
+
+#### Параметри:
+| default | Значення за замовчуванням |
+| val | `val` буде повернуто замість значення за замовчуванням, доки `val` не є `null`, `undefined` або `NaN` |
+:---|:---|
+| _повертає_ * | Друге значення, якщо воно не є `null`, `undefined` або `NaN`, в іншому разі повертає значення за замовчуванням  |
+
+_Додано у версії v0.10.0_
+
+Повертає другий аргумент, якщо він не `null`, `undefined` або `NaN`, в іншому випадку повертає значення за замовчуванням.
+
+```javascript
+var defaultTo42 = R.defaultTo(42);
+
+defaultTo42(null);  //=> 42
+defaultTo42(undefined);  //=> 42
+defaultTo42('Ramda');  //=> 'Ramda'
+// parseInt('string') results in NaN
+defaultTo42(parseInt('string')); //=> 42
+```
+Спробуйте у [REPL](http://ramdajs.com/repl/?v=0.25.0#;var%20defaultTo42%20%3D%20R.defaultTo%2842%29%3B%0A%0AdefaultTo42%28null%29%3B%20%20%2F%2F%3D%3E%2042%0AdefaultTo42%28undefined%29%3B%20%20%2F%2F%3D%3E%2042%0AdefaultTo42%28%27Ramda%27%29%3B%20%20%2F%2F%3D%3E%20%27Ramda%27%0A%2F%2F%20parseInt%28%27string%27%29%20results%20in%20NaN%0AdefaultTo42%28parseInt%28%27string%27%29%29%3B%20%2F%2F%3D%3E%2042)
+
+**[⬆ вверх](#Документація)**
+
+
+
 ## descend
 ### `[Function]`
 
@@ -901,6 +1025,64 @@ var people = [
 var peopleByOldestFirst = R.sort(byAge, people);
 ```
 Спробуйте у [REPL](http://ramdajs.com/repl/?v=0.24.1#?var%20byAge%20%3D%20R.descend%28R.prop%28%27age%27%29%29%3B%0Avar%20people%20%3D%20%5B%0A%20%20%2F%2F%20...%0A%5D%3B%0Avar%20peopleByOldestFirst%20%3D%20R.sort%28byAge%2C%20people%29%3B)
+
+**[⬆ вверх](#Документація)**
+
+
+
+## difference
+### `[Relation]`
+
+`[*] → [*] → [*]`
+
+#### Параметри:
+| list1 | Перший список. |
+:---|:---|
+| list2 | Другий список. |
+| Повертає __Array__ | Повертає масив елементів зі списку `list1`, яких немає у списку `list2`. |
+
+_Додано у версії v0.1.0_
+
+Знаходить набір(неповторюваних) елементів з першого списку, яких немає у другому списку. Об'єкти та масиви порівнюються з точки зору рівності значень, а не рівності посиланнь.
+
+Дивіться також [differenceWith](https://github.com/ivanzusko/ramda/blob/master/DOCUMENTATION.md#differencewidth), [symmetricDifference](https://github.com/ivanzusko/ramda/blob/master/DOCUMENTATION.md#symmetricdifference), [symmetricDifferenceWith](https://github.com/ivanzusko/ramda/blob/master/DOCUMENTATION.md#symmetricdifferencewith), [without](https://github.com/ivanzusko/ramda/blob/master/DOCUMENTATION.md#without).
+
+```javascript
+R.difference([1,2,3,4], [7,6,5,4,3]); //=> [1,2]
+R.difference([7,6,5,4,3], [1,2,3,4]); //=> [7,6,5]
+R.difference([{a: 1}, {b: 2}], [{a: 1}, {c: 3}]) //=> [{b: 2}]
+```
+Спробуйте у [REPL](https://ramdajs.com/repl/?v=0.25.0#?R.difference%28%5B1%2C2%2C3%2C4%5D%2C%20%5B7%2C6%2C5%2C4%2C3%5D%29%3B%20%2F%2F%3D%3E%20%5B1%2C2%5D%0AR.difference%28%5B7%2C6%2C5%2C4%2C3%5D%2C%20%5B1%2C2%2C3%2C4%5D%29%3B%20%2F%2F%3D%3E%20%5B7%2C6%2C5%5D%0AR.difference%28%5B%7Ba%3A%201%7D%2C%20%7Bb%3A%202%7D%5D%2C%20%5B%7Ba%3A%201%7D%2C%20%7Bc%3A%203%7D%5D%29%20%2F%2F%3D%3E%20%5B%7Bb%3A%202%7D%5D)
+
+**[⬆ вверх](#Документація)**
+
+
+
+## differenceWith
+### `[Relation]`
+
+`((a, a) → Boolean) → [a] → [a] → [a]`
+
+#### Параметри:
+| pred | Предикат, який використовується для з'ясування чи два елементи рівні між собою. |
+:---|:---|
+| list1 | Перший список. |
+| list2 | Другий список. |
+| Повертає __Array__ | Повертає масив елементів зі списку `list1`, яких немає у списку `list2`. |
+
+_Додано у версії v0.1.0_
+
+Знаходить набір елементів першого списку, яких немає у другому списку. Повторюваність елементів виявляється згідно зі значенням, яке повертається після застосування наданого предикату щодо обох списків.
+
+Дивіться також [difference](https://github.com/ivanzusko/ramda/blob/master/DOCUMENTATION.md#difference), [symmetricDifference](https://github.com/ivanzusko/ramda/blob/master/DOCUMENTATION.md#symmetricdifference), [symmetricDifferenceWith](https://github.com/ivanzusko/ramda/blob/master/DOCUMENTATION.md#symmetricdifferencewith).
+
+```javascript
+var cmp = (x, y) => x.a === y.a;
+var l1 = [{a: 1}, {a: 2}, {a: 3}];
+var l2 = [{a: 3}, {a: 4}];
+R.differenceWith(cmp, l1, l2); //=> [{a: 1}, {a: 2}]
+```
+Спробуйте у [REPL](https://ramdajs.com/repl/?v=0.25.0#?var%20cmp%20%3D%20%28x%2C%20y%29%20%3D%3E%20x.a%20%3D%3D%3D%20y.a%3B%0Avar%20l1%20%3D%20%5B%7Ba%3A%201%7D%2C%20%7Ba%3A%202%7D%2C%20%7Ba%3A%203%7D%5D%3B%0Avar%20l2%20%3D%20%5B%7Ba%3A%203%7D%2C%20%7Ba%3A%204%7D%5D%3B%0AR.differenceWith%28cmp%2C%20l1%2C%20l2%29%3B%20%2F%2F%3D%3E%20%5B%7Ba%3A%201%7D%2C%20%7Ba%3A%202%7D%5D)
 
 **[⬆ вверх](#Документація)**
 
@@ -1116,6 +1298,36 @@ R.dropRepeats([1, 1, 1, 2, 3, 4, 4, 2, 2]); //=> [1, 2, 3, 4, 2]
 
 
 
+
+## dropRepeatsWith
+### `[List]`
+
+`((a, a) → Boolean) → [a] → [a]`
+
+#### Параметри:
+| pred | Предикат, за допомогою якого перевіряється, чи є два елементи рівними один одному |
+:---|:---|
+| list | Масив, який треба розглянути. |
+| повертає __Array__ | `list` без елементів, що повторюються. |
+
+_Додано у версії v0.14.0
+
+Повертає новий список без жодних послідовно повторюваних елементів. Рівність визначається застосуванням переданого предиката до кожної пари послідовних елементів. Перший елемент в серії рівних елементів буде збережений.
+
+Поводить себе як трансдюсер, у випадку, якщо замість списку передано трансформер.
+
+Дивіться також [transduce](https://github.com/ivanzusko/ramda/blob/master/DOCUMENTATION.md#transduce).
+
+```javascript
+var l = [1, -1, 1, 3, 4, -4, -4, -5, 5, 3, 3];
+R.dropRepeatsWith(R.eqBy(Math.abs), l); //=> [1, 3, 4, -5, 3]
+```
+Спробуйте у [REPL](http://ramdajs.com/repl/?v=0.25.0#;var%20l%20%3D%20%5B1%2C%20-1%2C%201%2C%203%2C%204%2C%20-4%2C%20-4%2C%20-5%2C%205%2C%203%2C%203%5D%3B%0AR.dropRepeatsWith%28R.eqBy%28Math.abs%29%2C%20l%29%3B%20%2F%2F%3D%3E%20%5B1%2C%203%2C%204%2C%20-5%2C%203%5D)
+
+**[⬆ вверх](#Документація)**
+
+
+
 ## dropWhile
 ### `[List]`
 
@@ -1280,6 +1492,64 @@ R.none(isEven, [1, 3, 5, 7, 8, 11]); //=> false
 Спробуйте у [REPL](http://ramdajs.com/repl/?v=0.24.1#?var%20isEven%20%3D%20n%20%3D%3E%20n%20%25%202%20%3D%3D%3D%200%3B%0A%0AR.none%28isEven%2C%20%5B1%2C%203%2C%205%2C%207%2C%209%2C%2011%5D%29%3B%20%2F%2F%3D%3E%20true%0AR.none%28isEven%2C%20%5B1%2C%203%2C%205%2C%207%2C%208%2C%2011%5D%29%3B%20%2F%2F%3D%3E%20false)
 
 **[⬆ вверх](#Документація)**
+
+
+
+## once
+### `[Function]`
+
+`(a… → b) → (a… → b)`
+
+#### Параметри:
+| fn | Функція, яка має бути обгорнута у "викликати-лише-раз"(`call-only-once`) обгортку. |
+:---|:---|
+| Повертає **Function** | Повертає обгорнуту функцію. |
+
+_Додано у версії v0.1.0_
+
+Приймає функцію `fn` і повертає функцію, яка забезпечує виклик функції `fn` таким чином, що `fn` може бути викликана лише одни раз, в незалежності від того, скільки разів викликається повертаєма функція. Вперше вираховане значення буде повернене при всіх подальших викликах.
+
+```javascript
+var addOneOnce = R.once(x => x + 1);
+addOneOnce(10); //=> 11
+addOneOnce(addOneOnce(50)); //=> 11
+```
+Спробуйте у [REPL](https://ramdajs.com/repl/?v=0.25.0#?var%20addOneOnce%20%3D%20R.once%28x%20%3D%3E%20x%20%2B%201%29%3B%0AaddOneOnce%2810%29%3B%20%2F%2F%3D%3E%2011%0AaddOneOnce%28addOneOnce%2850%29%29%3B%20%2F%2F%3D%3E%2011)
+
+**[⬆ вверх](#Документація)**
+
+
+
+## partial
+### `[Function]`
+
+`((a, b, c, …, n) → x) → [a, b, c, …] → ((d, e, f, …, n) → x)`
+
+#### Параметри:
+| f | Функція |
+:---|:---|
+| args | Перелік аргументів |
+| Повертає **Фунцію** | |
+
+_Додано у версії v0.10.0_
+
+Приймає функцію `f` та список аргументів `args` і повертає функцію(скажімо `g`). Коли застосована, функція `g` повертає результат застосуання функції `f` щодо аргументів `args`, котрі були передані зпочатку, і слідом повертає аргументи передані у функцію `g`.
+
+Дивіться також [partialRight](https://github.com/ivanzusko/ramda/blob/master/DOCUMENTATION.md#partialright).
+
+```javascript
+var multiply2 = (a, b) => a * b;
+var double = R.partial(multiply2, [2]);
+double(2); //=> 4
+
+var greet = (salutation, title, firstName, lastName) =>
+  salutation + ', ' + title + ' ' + firstName + ' ' + lastName + '!';
+
+var sayHello = R.partial(greet, ['Hello']);
+var sayHelloToMs = R.partial(sayHello, ['Ms.']);
+sayHelloToMs('Jane', 'Jones'); //=> 'Hello, Ms. Jane Jones!'
+```
+Спробуйте у [REPL](https://ramdajs.com/repl/?v=0.25.0#?var%20multiply2%20%3D%20%28a%2C%20b%29%20%3D%3E%20a%20%2A%20b%3B%0Avar%20double%20%3D%20R.partial%28multiply2%2C%20%5B2%5D%29%3B%0Adouble%282%29%3B%20%2F%2F%3D%3E%204%0A%0Avar%20greet%20%3D%20%28salutation%2C%20title%2C%20firstName%2C%20lastName%29%20%3D%3E%0A%20%20salutation%20%2B%20%27%2C%20%27%20%2B%20title%20%2B%20%27%20%27%20%2B%20firstName%20%2B%20%27%20%27%20%2B%20lastName%20%2B%20%27%21%27%3B%0A%0Avar%20sayHello%20%3D%20R.partial%28greet%2C%20%5B%27Hello%27%5D%29%3B%0Avar%20sayHelloToMs%20%3D%20R.partial%28sayHello%2C%20%5B%27Ms.%27%5D%29%3B%0AsayHelloToMs%28%27Jane%27%2C%20%27Jones%27%29%3B%20%2F%2F%3D%3E%20%27Hello%2C%20Ms.%20Jane%20Jones%21%27)
 
 
 

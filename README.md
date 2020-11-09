@@ -86,15 +86,15 @@ const R = require('ramda');
 або з CDN чи cdnjs:
 
 ```html
-<script src="//cdnjs.cloudflare.com/ajax/libs/ramda/0.24.1/ramda.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/ramda/0.25.0/ramda.min.js"></script>
 ```
 
 чи за допомогою одного з посилань наведених нижче з [jsDelivr](http://jsdelivr.com):
 
 ```html
-<script src="//cdn.jsdelivr.net/ramda/0.24.1/ramda.min.js"></script>
-<script src="//cdn.jsdelivr.net/ramda/0.24/ramda.min.js"></script>
-<script src="//cdn.jsdelivr.net/ramda/latest/ramda.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/ramda@0.25.0/dist/ramda.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/ramda@0.25/dist/ramda.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/ramda@latest/dist/ramda.min.js"></script>
 ```
 
 (зауважте, що використання `latest` привносить величезний ризик, що при зміні ramda API ваш код може зламатися.)
@@ -102,6 +102,11 @@ const R = require('ramda');
 Ці теги script додають змінну `R` до глобальної області видимості браузера.
 
 Або ви можете вставити ramda у будь-який нічого не підозрюючий сайт за допомогою [bookmarklet](https://github.com/ramda/ramda/blob/master/BOOKMARKLET.md).
+
+**Зауваження до версій > 0.25**
+Версії Rambda > 0.25 не мають експроту за умовчанням.
+Тому замість `import R from 'ramda';`, потрібно використовувати `import * as R from 'ramda';`
+А ще краще, імпортувати тільки необхідні функції через `import { functionName } from 'ramda';`
 
 ### Збірка
 
@@ -125,7 +130,7 @@ const R = require('ramda');
 Ім'я
 --------
 
-Добре, ми як вівці :ram:.  Це все. Це коротке ім'я, ніким поки не зайняте. Це з легкістю могло би бути `eweda`, але тоді ми б були змушені казати _eweda lamb!_ (lamb - ягня, прим.перекладача), а ніхто того не хоче. Для тих, хто не є носієм англійської мови, _lambs_ - це дитинча вівці, _ewes_ - це вівцематка, а _rams_ - барани. Тому, можливо, _ramda_ - це подорослішавша lambda... Але, напевно, ні.
+Добре, отже, ми любимо овець :ram:. Це все. Це коротке ім'я, ніким поки не зайняте. Це з легкістю могло би бути `eweda`, але тоді ми б були змушені казати _eweda lamb!_ (lamb - ягня, прим.перекладача), а ніхто того не хоче. Для тих, хто не є носієм англійської мови, _lambs_ - це дитинча вівці, _ewes_ - це вівцематка, а _rams_ - барани. Тому, можливо, _ramda_ - це подорослішавша lambda... Але, напевно, ні.
 
 
 
